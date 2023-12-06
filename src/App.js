@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "../src/styles/App.css"
+import MainRoutes from './RoutesCompo/MainRoutes';
+import { PayPalScriptProvider} from "@paypal/react-paypal-js";
 
 function App() {
+  const initialOptions = {
+    clientId: "ATkpSQbQpREDo5fvZFsfqh2OLM6IpA16J28TiEYlgGl-zvXS84E8vSYr7hw1MJ-GC5rfI6gNZpkA3TU6",
+    currency: "USD",
+    intent: "capture",
+};
+
   return (
+    <PayPalScriptProvider options={initialOptions}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MainRoutes />
     </div>
+    </PayPalScriptProvider>
   );
 }
 
 export default App;
+

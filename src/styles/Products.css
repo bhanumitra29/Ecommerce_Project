@@ -1,0 +1,44 @@
+#flex-container {
+    width: 90%;
+    /* margin-left: 5%; */
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.miniContainer {
+    width: 22%;
+
+    text-align: center;
+    box-shadow: 0 0 3px 0 #252B48;
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+    transform: translateY(0%);
+    position: relative;
+}
+
+.miniContainer:hover{
+    transition: transform 0.3s ease;
+    transform: translateY(-6%);
+}
+
+#dolar-span{
+    color: red;
+}
+
+.Hot{
+    background-color: red;
+    color: white;
+    height: 1.1em;
+    width: 2em;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    border-radius: 2px;
+}
+

@@ -1,13 +1,11 @@
 import React from "react";
-import { ImSad } from "react-icons/im";
 
-import "../styles/ZeroProduct.css";
 
 function ZeroProduct() {
     return (
-        <div id="zero-product-container">
-            <h4>There is no product in your cart!</h4>
-            <ImSad id="sad-icon" />
+        <div>
+            {/* <h4>No Product added!</h4> */}
+            <img src='https://www.eyecatchers.in/shop-online/images/cart-empty.jpg' alt='not found' />
         </div>
     )
 };

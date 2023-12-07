@@ -37,18 +37,18 @@ function ShoppingCart() {
 
   return (
     <>
-      <h1 id="shopping-cart-heading">SHOPPING CART</h1>
+      <h1 id="shoppingHeading">CART</h1>
       {calculateTotalPrice() === 0 ? (
         <ZeroProduct />
       ) : (
         <>
           {productsInShoppingCart.map((eachProduct, index) => (
             <div id="single-cart-container" key={index}>
-              <img src={eachProduct.image} alt={"product"} onClick={() => navigate(`/details/${eachProduct.id}`)} />
+              <img src={eachProduct.image} alt={"product"} onClick={() => navigate(`/details/${eachProduct.id}`)} width={100} height={100} />
 
               <div id="details">
-                <span id="brand">{eachProduct.name}</span>
-                <span id="title">{eachProduct.name}</span>
+                <h3><span id="brand">{eachProduct.name}</span></h3>
+                {/* <span id="title">{eachProduct.name}</span> */}
               </div>
 
               <div id="edit">

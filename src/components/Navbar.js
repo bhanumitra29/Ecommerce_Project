@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsHandbag } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -10,6 +10,16 @@ import SearchBar from "./SearchBar";
 
 
 function Navbar() {
+
+    const [subMenuOpen, setSubMenuOpen] = useState(false);
+
+    const onHover = () => {
+      setSubMenuOpen(true);
+    };
+  
+    const onLeave = () => {
+      setSubMenuOpen(false);
+    };
 
     const products = useSelector(state => state.navbarReducer.value); 
 
@@ -34,6 +44,22 @@ function Navbar() {
         window.scroll({ top: 0, behavior: 'smooth' });
     }
 
+
+
+    const subMenu = (
+        <ul className="sub-menu1">
+          <li>
+            <NavLink to="/samsung">Samsung</NavLink>
+          </li>
+          <li>
+            <NavLink to="/apple">Apple</NavLink>
+          </li>
+          <li>
+          <NavLink to="/google">Google</NavLink>
+          </li>
+        </ul>
+      );
+
     return (
         
         <div id="navbar-container">
@@ -50,9 +76,14 @@ function Navbar() {
             <NavLink to="/all" className="link" style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
             All
             </NavLink>
-            <NavLink to="/mobiles" className="link" style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
+
+            <div className="profile">
+            <NavLink to="/mobiles" className="link" onMouseEnter={onHover} onMouseLeave={onLeave} style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
             Mobiles
+            {subMenuOpen && subMenu}
             </NavLink>
+            </div>
+
             <NavLink to="/electronics" className="link" style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
              Electronics
             </NavLink>

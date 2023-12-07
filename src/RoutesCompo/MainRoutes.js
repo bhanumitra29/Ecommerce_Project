@@ -21,6 +21,10 @@ import Mobiles from "../components/Mobiles";
 import Electronics from "../components/Electronics";
 import Watches from "../components/Watches";
 import Accesories from "../components/Accesories";
+import Samsung from "../SubRoutes/Samsung";
+import Apple from "../SubRoutes/Apple";
+import Google from "../SubRoutes/Google";
+// import MobileBrand from "../components/MobileBrand";
 
 
 function MainRoutes() {
@@ -58,6 +62,12 @@ function MainRoutes() {
 
         {/* <Route path="/item/:id" element={<DynamicContent />} /> */}
 
+        {/* <Route path="/mobiles/:cat" element={<MobileBrand />} /> */}
+
+
+        <Route path="/samsung" element={<Samsung />} />
+        <Route path="/apple" element={<Apple />} />
+        <Route path="/google" element={<Google />} />
       </Routes>
 
       </>

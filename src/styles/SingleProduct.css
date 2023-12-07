@@ -1,5 +1,5 @@
 #details-heading {
-    margin-top: 6rem;
+    margin-top: 2rem;
 }
 
 #single-product-container {
@@ -15,7 +15,7 @@
 
 #single-product-container>.flex-item>img {
     border-radius: 10px;
-    box-shadow: 0 0 1px 3px #9d174d;
+    /* box-shadow: 0 0 1px 3px #9d174d; */
     width: 30rem;
     height: 30rem;
     padding: 1rem;
@@ -29,7 +29,7 @@
 
 #single-product-container>#details>#brand {
     font-size: 2rem;
-    color: #9d174d;
+    color: #FF4252;
 }
 
 #single-product-container>#details>#title {
@@ -50,11 +50,11 @@
 #price-container {
     width: 60%;
     margin-left: 20%;
-    text-align: center;
+    text-align: start;
 
-    position: absolute;
+    /* position: absolute;
     bottom: 0;
-    left: 0;
+    left: 0; */
 }
 
 #price-container>#price {
@@ -62,13 +62,14 @@
 }
 
 #price-container>#price>span {
-    color: #9d174d;
+    /* color: #9d174d; */
+    color: #FF4252;
     margin-right: 3px;
 }
 
 button {
     color: white;
-    background-color: #9d174d;
+    background-color: #FF4252;
     border-radius: 5px;
     padding: 8px;
     border: none;

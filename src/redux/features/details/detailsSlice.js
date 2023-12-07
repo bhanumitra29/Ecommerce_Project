@@ -22,10 +22,11 @@ const initialState = {
 }
 
 export const getDetails = createAsyncThunk("getDetails", async (id) => {
-    const response = await axios.get(`http://localhost:2926/api/mobiles`);
+    const response = await axios.get(`http://localhost:2926/api/all`);
     // console.log(response);
     // console.log(response.data);
-    return response.data;
+    const result = response.data.filter((item)=>item.id===Number(id))
+    return result;
 })
 
 export const detailsSlice = createSlice({

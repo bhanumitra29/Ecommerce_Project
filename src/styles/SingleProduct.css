@@ -16,6 +16,8 @@
 #single-product-container>.flex-item>img {
     border-radius: 10px;
     /* box-shadow: 0 0 1px 3px #9d174d; */
+    box-shadow: 0 0 3px 0 #252B48;
+    border-radius: 10px;
     width: 30rem;
     height: 30rem;
     padding: 1rem;

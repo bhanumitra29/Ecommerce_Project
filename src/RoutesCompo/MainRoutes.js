@@ -21,9 +21,22 @@ import Mobiles from "../components/Mobiles";
 import Electronics from "../components/Electronics";
 import Watches from "../components/Watches";
 import Accesories from "../components/Accesories";
-import Samsung from "../SubRoutes/Samsung";
-import Apple from "../SubRoutes/Apple";
-import Google from "../SubRoutes/Google";
+import Samsung from "../SubRoutes/Mobiles/Samsung";
+import Apple from "../SubRoutes/Mobiles/Apple";
+import Google from "../SubRoutes/Mobiles/Google";
+import Mouses from "../SubRoutes/Electronics/Mouses";
+import Keyboard from "../SubRoutes/Electronics/Keyboard";
+import Laptop from "../SubRoutes/Electronics/Laptop";
+import Audio from "../SubRoutes/Electronics/Audio";
+import Fossil from "../SubRoutes/Watches/Fossil";
+import Applew from "../SubRoutes/Watches/Applew";
+import Samsungw from "../SubRoutes/Watches/Samsungw";
+import Charger from "../SubRoutes/Accesories/Charger";
+import Cases from "../SubRoutes/Accesories/Cases";
+import SearchedItem from "../components/SearchedItem";
+import LoginCompo from "../LoginCompo/Login";
+import RegisterCompo from "../LoginCompo/Register";
+
 // import MobileBrand from "../components/MobileBrand";
 
 
@@ -60,14 +73,37 @@ function MainRoutes() {
         <Route path="/watches" element={<Watches />} />
         <Route path="/accesories" element={<Accesories />} />
 
+        <Route path="/login" element={<LoginCompo />} />
+        <Route path="/register" element={<RegisterCompo />} />
+
         {/* <Route path="/item/:id" element={<DynamicContent />} /> */}
 
         {/* <Route path="/mobiles/:cat" element={<MobileBrand />} /> */}
 
+        {/* subroutes */}
 
         <Route path="/samsung" element={<Samsung />} />
         <Route path="/apple" element={<Apple />} />
         <Route path="/google" element={<Google />} />
+
+        <Route path="/mouses" element={<Mouses />} />
+        <Route path="/keyboard" element={<Keyboard />} />
+        <Route path="/laptop" element={<Laptop />} />
+        <Route path="/audio" element={<Audio />} />
+
+        <Route path="/fossil" element={<Fossil />} />
+        <Route path="/applew" element={<Applew />} />
+        <Route path="/samsungw" element={<Samsungw />} />
+
+        <Route path="/charger" element={<Charger />} />
+        <Route path="/cases" element={<Cases />} />
+
+        {/* subroutes */}
+
+        <Route path="/sercheditems" element={<SearchedItem />} />
+
+
+
       </Routes>
 
       </>

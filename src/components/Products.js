@@ -1,63 +1,77 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { PiShoppingCart } from "react-icons/pi";
 import { add } from "../redux/features/navbar/navbarSlice";
-import { FaShippingFast,FaHandHoldingUsd, FaUserTie, FaCartPlus } from 'react-icons/fa'
-
-
+import { FaShippingFast, FaHandHoldingUsd, FaUserTie, FaCartPlus } from 'react-icons/fa'
 
 import "../styles/Products.css";
 import SliderComponent from "../SliderCompo/Slider";
 import Footer from "../SliderCompo/Footer";
 
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+
+  
+  while (currentIndex !== 0) {
+
+    
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 function Products() {
+  const products = useSelector(state => state.productsReducer.value); 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const products = useSelector(state => state.productsReducer.value); 
+  
+  const shuffledProducts = shuffle(products.filter(item => item.id > 0));
 
-    const navigate = useNavigate();
+  
+  const displayedProducts = shuffledProducts.slice(0, 9);
 
-    const dispatch = useDispatch();
-
-    return (
-        <>
-            
-
-            <h1>PRODUCTS</h1>
-            <SliderComponent />
-
-           
-
-            <div id="flex-container">
-                {products.length > 0 && products.map((eachProduct, index) => {
-                    return (
-                        <div className="miniContainer" key={index}>
-                            <div className="Hot">Hot</div>
-                            
-                                <img onClick={() => navigate(`/details/${eachProduct.id}`)}
-                                    src={eachProduct.image} // thumbnail: küçük resim
-                                    alt={eachProduct.id + " image"} width={100} height={100}>
-                                </img>
-
-                                <h2>{eachProduct.name}</h2>
-                            
-
-                           
-                                <h2>
-                                    <span id="dolar-span">₹</span>
-                                    {eachProduct.price}
-                                </h2>
-
-                                {/* <PiShoppingCart id="shopping-cart" onClick={() => dispatch(add(eachProduct))} />  */}
-                                <button onClick={() => dispatch(add(eachProduct))}><FaCartPlus /> Add to Cart</button>
-                            </div>
-                       
-                    );
-                })}
+  return (
+    <>
+      
+      <SliderComponent />
+      
+      <div className="page-header">
+      <h1>BEST SELLER</h1>
+    </div>
+    
+      <div id="flex-container">
+        {displayedProducts.map((eachProduct, index) => {
+          return (
+            <div className="miniContainer" key={index}>
+              <div className="Hot">Hot</div>
+              <img
+                onClick={() => navigate(`/details/${eachProduct.id}`)}
+                src={eachProduct.image}
+                alt={`${eachProduct.id}`}
+                width={100}
+                height={100}
+              />
+              <h2>{eachProduct.name}</h2>
+              <h2>
+                <span id="dolar-span">₹</span>
+                {eachProduct.price}
+              </h2>
+              <button onClick={() => dispatch(add(eachProduct))}>
+                <FaCartPlus /> Add to Cart
+              </button>
             </div>
+          );
+        })}
+      </div>
 
-
-            <div className='mainShippingBox'>
+      <div className='mainShippingBox'>
         <div className='shipping'>
           <FaShippingFast className='shippingSymbol'/>
           {/* <img src={} alt='shipping image' height={100} width={100}/> */}
@@ -84,8 +98,8 @@ function Products() {
 
       {/* <button onClick={handleClick}>Logout</button> */}
       <Footer />
-        </>
-    )
-};
+    </>
+  );
+}
 
 export default Products;

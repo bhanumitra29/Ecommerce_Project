@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { add } from '../redux/features/navbar/navbarSlice';
+
 import { useNavigate } from 'react-router-dom';
 import { FaCartPlus } from 'react-icons/fa';
+import { add } from '../../redux/features/navbar/navbarSlice';
 
-const Samsung = () => {
+const Keyboard = () => {
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.productsReducer.value); // products is an array
@@ -12,13 +13,13 @@ const Samsung = () => {
     const navigate = useNavigate();
     return (
         <div id="flex-container">
-        {products.length > 0 && products.filter((item)=>item.cat==="samsung").map((eachProduct,index)=>(
+        {products.length > 0 && products.filter((item)=>item.cat==="keyboard").map((eachProduct,index)=>(
           
             <div className="miniContainer" key={index}>
                
                 
                     <img onClick={() => navigate(`/details/${eachProduct.id}`)}
-                        src={eachProduct.image} // thumbnail: küçük resim
+                        src={eachProduct.image} 
                         alt={eachProduct.id + " image"} width={100} height={100}>
                     </img>
     
@@ -44,4 +45,4 @@ const Samsung = () => {
     
     };
 
-export default Samsung;
+export default Keyboard;

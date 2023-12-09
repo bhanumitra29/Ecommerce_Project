@@ -14,7 +14,7 @@
     color: white;
     width: 100%;
     height: 4rem;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
 }
 
 .NavbarLinks{
@@ -24,16 +24,16 @@
 }
 
 
-.active-link {
+/* .active-link {
    
     font-weight: bold;
     
     color: #57A6EA;
     text-decoration: underline;
-}
+} */
 
 
-#navbar-container>#icon {
+/* #navbar-container>#icon {
     color: white;
     font-size: 2.5rem;
     padding: 0.4rem 1.8rem;
@@ -41,11 +41,11 @@
 
 #navbar-container>#icon>#icon-in-div:hover {
     cursor: pointer;
-}
+} */
 
 #navbar-container>#hand-bag {
     position: absolute;
-    top: 1.3rem;
+    top: 0.5rem;
     right: 2.6rem;
     color: white;
     font-size: 2rem;
@@ -60,11 +60,86 @@
     /* navbarda başlangıç değeri 0 olan değişkeni tutuyor. */
 
     position: absolute;
-    top: 3.2rem;
+    top: 2rem;
     right: 1.6rem;
     color: white;
     font-size: 1.2rem;
 }
+
+.subroutes {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #fff; 
+    border: 1px solid #ccc;
+    padding: 10px;
+    position: absolute;
+    top: 2.2em; 
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .subroutes h4 {
+    color: #57A6EA;
+    
+  }
+
+  .h4tag{
+    text-decoration: none;
+  }
+  
+  .subroutes ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .subroutes ul li {
+    margin-bottom: 10px;
+  }
+  
+  .subroutes ul li a {
+    color: #000; 
+    text-decoration: none;
+  }
+  
+  .subroutes ul li a:hover {
+    text-decoration: underline;
+  }
+
+  .subroutes1 {
+    
+    background-color: #fff; 
+    border: 1px solid #ccc;
+    padding: 5px;
+    position: absolute;
+    top: 2.2em; 
+    right: 22em;
+    width: 7%;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 5px;
+    z-index: 1;
+  }
+
+  .subroutes1 ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .subroutes1 ul li {
+    margin-bottom: 10px;
+  }
+  
+  .subroutes1 ul li a {
+    color: #000; 
+    text-decoration: none;
+  }
+  
+  .subroutes1 ul li a:hover {
+    text-decoration: underline;
+  }
+  
 
 @media (max-width: 320px) {
 

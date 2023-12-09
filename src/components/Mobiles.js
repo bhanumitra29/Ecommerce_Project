@@ -1,72 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { add } from "../redux/features/navbar/navbarSlice";
-
-
-
-import "../styles/Products.css";
 import { FaCartPlus } from "react-icons/fa";
+import Footer from "../SliderCompo/Footer";
 
 function Mobiles() {
+  const products = useSelector((state) => state.productsReducer.value);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const products = useSelector(state => state.productsReducer.value); // products is an array
+  
+  const [displayedItems, setDisplayedItems] = useState(9); 
 
-    const navigate = useNavigate();
+  const loadMore = () => {
+    
+    setDisplayedItems((prevCount) => prevCount + 9); 
+  };
 
-    const dispatch = useDispatch();
+  return (
+    <>
+      {/* <h1>PRODUCTS</h1> */}
 
-    return (
-        <>
-            {/* <Hero /> */}
+      <div className="poster poster4">
+      {/* Content inside the poster */}
+    </div>
 
-            <h1>PRODUCTS</h1>
+    <div className="page-header">
+      <h1>Mobiles</h1>
+    </div>
 
-            {/* <ul>
-        {products.length > 0 && products.filter((item)=>item.cat==="samsung").map((eachProduct,index)=>(
-          <li key={index}>
-            <NavLink to={`/mobiles/${products.cat}`}>samsung</NavLink>
-          </li>
-        ))}
-      </ul> */}
+      <div id="flex-container">
+        {products.length > 0 &&
+          products
+            .filter((item) => item.id > 0 && item.id < 30)
+            .slice(0, displayedItems) 
+            .map((eachProduct, index) => {
+              return (
+                <div className="miniContainer" key={index}>
+                  <img
+                    onClick={() => navigate(`/details/${eachProduct.id}`)}
+                    src={eachProduct.image}
+                    alt={`${eachProduct.id}`}
+                    width={100}
+                    height={100}
+                  />
+                  <h2>{eachProduct.name}</h2>
+                  <h2>
+                    <span id="dolar-span">₹</span>
+                    {eachProduct.price}
+                  </h2>
+                  <button onClick={() => dispatch(add(eachProduct))}>
+                    <FaCartPlus /> Add to Cart
+                  </button>
+                </div>
+              );
+            })}
+      </div>
 
-            <div id="flex-container">
-           
+     
+      {displayedItems < products.length && (
+        <button className='loadButton' onClick={loadMore}>Load More</button>
+      )}
 
-                {/* {products.length > 0 && products.map((eachProduct, index) => { */}
-                {products.length > 0 && products.filter((item)=>item.id >0 && item.id<30
-                
-                ).map((eachProduct, index) => {
-                    return (
-                        <div className="miniContainer" key={index}>
-                           
-                            
-                                <img onClick={() => navigate(`/details/${eachProduct.id}`)}
-                                    src={eachProduct.image} // thumbnail: küçük resim
-                                    alt={eachProduct.id + " image"} width={100} height={100}>
-                                </img>
-
-                                <h2>{eachProduct.name}</h2>
-                            
-
-                           
-                                <h2>
-                                    <span id="dolar-span">₹</span>
-                                    {eachProduct.price}
-                                </h2>
-
-                                {/* <PiShoppingCart id="shopping-cart" onClick={() => dispatch(add(eachProduct))} />  */}
-                                <button onClick={() => dispatch(add(eachProduct))}><FaCartPlus /> Add to Cart</button>
-
-                               
-                            </div>
-                       
-                    );
-                })}
-            </div>
-        </>
-    )
-};
+      <Footer />
+    </>
+  );
+}
 
 export default Mobiles;

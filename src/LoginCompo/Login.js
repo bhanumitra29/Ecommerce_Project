@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../App.css";
+import "../styles/All.css"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginCompo = () => {
@@ -8,7 +9,7 @@ const LoginCompo = () => {
     email: "",
     password: "",
   });
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setData({
@@ -32,7 +33,7 @@ const LoginCompo = () => {
 
         if (res.data.msg === "User login successfully") {
           localStorage.setItem('token', res.data.token);
-          // navigate("/cart");
+          navigate("/shoppingCart");
         }
       })
       .catch((error) => {

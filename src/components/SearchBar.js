@@ -1,31 +1,61 @@
-import React, { useState } from 'react';
-import {FaSearch} from 'react-icons/fa';
-function SearchBar() {
-  const [searchText, setSearchText] = useState('');
-
-  const handleSearchChange = (e) => {
-    setSearchText(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
+// import React, { useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { searchItems } from "../redux/features/details/detailsSlice";
+// import { useNavigate } from "react-router-dom";
+// ;
+// const SearchComponent = () => {
+//     const dispatch = useDispatch();
+//     const [searchQuery, setSearchQuery] = useState("");
+//     const searchedItems = useSelector(state => state.detailsReducer.value);
+//     const loading = useSelector(state => state.detailsReducer.loading);
+//    const Navi = useNavigate();
     
-    console.log('Searching for:', searchText);
-  };
+    
 
+//     const handleSearch = () => {
+//         dispatch(searchItems(searchQuery));
+//         setSearchQuery(""); 
+//     };
+
+//     const navigateToSearchedItems = () => {
+//       Navi("/searcheditems", { searchedItems }); 
+//   };
+
+//     return (
+//         <div>
+//             <input
+//                 type="text"
+//                 placeholder="Search..."
+//                 value={searchQuery}
+//                 onChange={(e) => setSearchQuery(e.target.value)}
+//             />
+//             <button onClick={handleSearch}>Search</button>
+//             {loading && <p>Loading...</p>}
+//             {searchedItems ? (
+//                 searchedItems.length === 0 ? (
+//                     <p>No items found</p>
+//                 ) : (
+//                   // <SearchedItem SearchedDetails={searchedItems} />
+//                   // Navi("/sercheditems")
+//                   <button onClick={navigateToSearchedItems}>{searchedItems.name}</button>
+//                 )
+//             ) : (
+//                 <p>No items found</p>
+//             )}
+//         </div>
+//     );
+// };
+
+// export default SearchComponent;
+
+import React from 'react'
+
+const SearchBar = () => {
   return (
-    <form onSubmit={handleSearchSubmit} className="search-bar">
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchText}
-        onChange={handleSearchChange}
-      />
-      <button type="submit">
-      <FaSearch />
-      </button>
-    </form>
-  );
+    <div>
+      search
+    </div>
+  )
 }
 
-export default SearchBar;
+export default SearchBar

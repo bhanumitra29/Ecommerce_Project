@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ZeroProduct from "./ZeroProduct.js";
 import { FaTrashAlt } from "react-icons/fa";
@@ -7,10 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 import "../styles/ShoppingCart.css";
 import PayPalPayment from "../PayPal/PayPalPayment.js";
+import axios from "axios";
+
 
 
 function ShoppingCart() {
   const productsInShoppingCart = useSelector((state) => state.navbarReducer.value); 
+  // console.log(productsInShoppingCart)
 
   
   function calculateTotalPrice() {
@@ -34,6 +37,27 @@ function ShoppingCart() {
     color: "#dcd9d9",
     cursor: "default"
   }
+
+
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+if (token) {
+    axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
+        .then((res) => {
+            console.log(res.data);
+            // navigate("/login")
+
+           
+        })
+        .catch(err => console.log(err))
+    }
+    else {
+    alert("Please login to view cart page!");
+    navigate("/login");
+    }
+  }, [token,navigate])
+  
+
 
   return (
     <>

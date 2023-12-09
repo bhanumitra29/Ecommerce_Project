@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "../App.css";
+import "../styles/All.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const RegisterCompo = () => {
   const [data, setData] = useState({
@@ -30,17 +31,20 @@ const RegisterCompo = () => {
     axios
       .post('http://localhost:2926/api/register', data)
       .then((res) => {
-        alert(res.data.msg);
-        localStorage.setItem('token', res.data.token);
+        // alert(res.data.msg);
+        toast.success(res.data.msg)
+        
 
         if (res.data.msg === "User Registered successfully") {
-          // Redirect to login page after successful registration
+          localStorage.setItem('token', res.data.token);
           navigate('/login');
+          toast.success(res.data.msg)
         }
       })
       .catch((error) => {
         console.log(error);
         alert("User registration failed, please try again");
+        // toast.remove("User registration failed, please try again")
       });
 
     // Clear the form data after submission

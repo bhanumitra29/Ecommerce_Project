@@ -29,6 +29,16 @@ export const getDetails = createAsyncThunk("getDetails", async (id) => {
     return result;
 })
 
+
+export const searchItems = createAsyncThunk("searchItems", async (searchQuery) => {
+    const response = await axios.get(`http://localhost:2926/api/all`);
+    const result = response.data.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    return result;
+});
+
+
 export const detailsSlice = createSlice({
     name: "details",
     initialState,
@@ -47,6 +57,21 @@ export const detailsSlice = createSlice({
         builder.addCase(getDetails.rejected, (state, action) => {
             state.error = "Bad fetching!"
         })
+
+
+        builder.addCase(searchItems.pending, (state, action) => {
+            state.loading = true;
+        });
+
+        builder.addCase(searchItems.fulfilled, (state, action) => {
+            state.loading = false;
+            state.value = action.payload;
+            storeInLocalStorage(state.value);
+        });
+
+        builder.addCase(searchItems.rejected, (state, action) => {
+            state.error = "Error in searching!";
+        });
     }
 });
 

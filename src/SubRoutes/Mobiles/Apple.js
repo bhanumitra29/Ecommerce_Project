@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { add } from '../redux/features/navbar/navbarSlice';
+
 import { useNavigate } from 'react-router-dom';
 import { FaCartPlus } from 'react-icons/fa';
+import { add } from '../../redux/features/navbar/navbarSlice';
 
-const Google = () => {
+const Apple = () => {
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.productsReducer.value); // products is an array
@@ -12,7 +13,7 @@ const Google = () => {
     const navigate = useNavigate();
     return (
         <div id="flex-container">
-        {products.length > 0 && products.filter((item)=>item.cat==="google").map((eachProduct,index)=>(
+        {products.length > 0 && products.filter((item)=>item.cat==="apple").map((eachProduct,index)=>(
           
             <div className="miniContainer" key={index}>
                
@@ -44,4 +45,4 @@ const Google = () => {
     
     };
 
-export default Google;
+export default Apple;

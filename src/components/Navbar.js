@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsHandbag } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -7,11 +7,15 @@ import "../styles/All.css"
 import "../styles/Navbar.css";
 import { FaStore, FaUser } from "react-icons/fa";
 import SearchBar from "./SearchBar";
+import axios from "axios";
 
 
 function Navbar() {
 
     const [subMenuOpen, setSubMenuOpen] = useState(false);
+    const [subMenuOpen1, setSubMenuOpen1] = useState(false);
+    const products = useSelector(state => state.navbarReducer.value); 
+    const navigate = useNavigate();
 
     const onHover = () => {
       setSubMenuOpen(true);
@@ -21,7 +25,15 @@ function Navbar() {
       setSubMenuOpen(false);
     };
 
-    const products = useSelector(state => state.navbarReducer.value); 
+    const onHover1 = () => {
+      setSubMenuOpen1(true);
+    };
+  
+    const onLeave1 = () => {
+      setSubMenuOpen1(false);
+    };
+
+    
 
     
     function numberOfProducts() {
@@ -32,33 +44,121 @@ function Navbar() {
         return number;
     }
 
-    const navigate = useNavigate();
+    
 
     function handleClickIcon() {
         navigate("/");
         window.scroll({ top: 0, behavior: 'smooth' });
     }
 
-    function handleClickHandBag() {
-        navigate("/shoppingCart");
-        window.scroll({ top: 0, behavior: 'smooth' });
+    const HandleClickHandBag=()=> {
+    
+      navigate("/shoppingCart");
+      window.scroll({ top: 0, behavior: 'smooth' });
+        }
+
+// const HandleAthentication=()=>{
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+if (token) {
+    axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
+        .then((res) => {
+            console.log(res.data);
+            navigate("/login")
+
+           
+        })
+        .catch(err => console.log(err))
     }
+    else {
+    alert("Please login to view cart page!");
+    navigate("/login");
+    }
+  }, [token,navigate])
+  
 
 
+    // }
+
+    const subMenu1 = (
+      <div className="subroutes1">
+      <ul>
+        <li>
+        <NavLink to="/login">Login</NavLink>
+        </li>
+        <li>
+        <NavLink to="/register">SignUp</NavLink>
+        </li>
+      </ul>
+      </div>
+    )
+     
+    
 
     const subMenu = (
-        <ul className="sub-menu1">
-          <li>
-            <NavLink to="/samsung">Samsung</NavLink>
-          </li>
-          <li>
-            <NavLink to="/apple">Apple</NavLink>
-          </li>
-          <li>
+  <div className="subroutes">
+    <div>
+    <NavLink className="h4tag" to="/mobiles"><h4>Mobiles</h4></NavLink>
+      <ul>
+        <li>
+          <NavLink to="/samsung">Samsung</NavLink>
+        </li>
+        <li>
+          <NavLink to="/apple">Apple</NavLink>
+        </li>
+        <li>
           <NavLink to="/google">Google</NavLink>
-          </li>
-        </ul>
-      );
+        </li>
+      </ul>
+    </div>
+
+    <div>
+    <NavLink className="h4tag" to="/electronics"><h4>Electronics</h4></NavLink>
+      <ul>
+        <li>
+          <NavLink to="/mouses">Mouses</NavLink>
+        </li>
+        <li>
+          <NavLink to="/keyboard">Keyboard</NavLink>
+        </li>
+        <li>
+          <NavLink to="/laptop">Laptop</NavLink>
+        </li>
+        <li>
+          <NavLink to="/audio">Audio</NavLink>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+    <NavLink className="h4tag" to="/watches"><h4>Watches</h4></NavLink>
+      <ul>
+        <li>
+          <NavLink to="/fossil">Fossil</NavLink>
+        </li>
+        <li>
+          <NavLink to="/applew">Apple Watches</NavLink>
+        </li>
+        <li>
+          <NavLink to="/samsungw">Samsung Watches</NavLink>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+    <NavLink className="h4tag" to="/accesories"><h4>Accessories</h4></NavLink>
+      <ul>
+        <li>
+          <NavLink to="/charger">Chargers</NavLink>
+        </li>
+        <li>
+          <NavLink to="/cases">Cases</NavLink>
+        </li>
+      </ul>
+    </div>
+  </div>
+);
+
 
     return (
         
@@ -73,16 +173,20 @@ function Navbar() {
             {/* <NavLink to="/" className="link" activeClassName="active-link">
             Home
             </NavLink> */}
-            <NavLink to="/all" className="link" style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
-            All
-            </NavLink>
 
             <div className="profile">
-            <NavLink to="/mobiles" className="link" onMouseEnter={onHover} onMouseLeave={onLeave} style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
-            Mobiles
+            <NavLink to="/all" className="link" onMouseEnter={onHover} onMouseLeave={onLeave} style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
+            All
             {subMenuOpen && subMenu}
             </NavLink>
             </div>
+
+
+            <NavLink to="/mobiles" className="link" style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
+            Mobiles
+            </NavLink>
+
+            
 
             <NavLink to="/electronics" className="link" style={({isActive}) => ({color: isActive ? "#57A6EA" : "white"})}>
              Electronics
@@ -100,17 +204,17 @@ function Navbar() {
         </div>
 
             <NavLink
-              to="/register"
+              
               className="link"
-            //   onMouseEnter={onHover}
-            //   onMouseLeave={onLeave}
+              onMouseEnter={onHover1}
+              onMouseLeave={onLeave1}
             >
              <FaUser /> My Profile
-              {/* {subMenuOpen && subMenu} */}
+              {subMenuOpen1 && subMenu1}
             </NavLink>
             </div>
             
-            <BsHandbag id="hand-bag" onClick={handleClickHandBag} />
+            <BsHandbag id="hand-bag" onClick={HandleClickHandBag} />
             <div id="number-of-products">{numberOfProducts()}</div>
             
         </div>

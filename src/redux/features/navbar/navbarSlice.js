@@ -39,8 +39,11 @@ export const navbarSlice = createSlice({
                 index === self.findIndex(p => p.id === product.id)
             );
 
+            
+
             state.value = uniqueProducts;
             storeInLocalStorage(state.value);
+            // console.log(state.value)
             toast.success("Product is added!");
         },
 

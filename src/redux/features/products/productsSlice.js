@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export const getProducts = createAsyncThunk("getProducts", async () => {
-    const response = await axios.get("http://localhost:2926/api/find");
+    const response = await axios.get("https://ecommerce-project-backend-w01h.onrender.com/api/find");
     // console.log(response);
     // console.log(response.data);
     // console.log(response.data.products); 

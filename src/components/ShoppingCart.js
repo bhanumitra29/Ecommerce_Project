@@ -44,7 +44,7 @@ function ShoppingCart() {
   console.log(token)
   useEffect(() => {
     if (token) {
-        axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
+        axios.get("https://ecommerce-project-backend-w01h.onrender.com/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
             .then((res) => {
                 console.log(res.data);
             })
@@ -65,7 +65,7 @@ const MakePayment=async ()=>{
   const headers={
     "content-Type":"application/json"
   }
-  const response=await fetch("http://localhost:2926/user/createcheckout",
+  const response=await fetch("https://ecommerce-project-backend-w01h.onrender.com/user/createcheckout",
   {method:"POST",
 headers:headers,
 body:JSON.stringify(body),

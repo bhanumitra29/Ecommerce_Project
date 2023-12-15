@@ -29,7 +29,7 @@ const LoginCompo = () => {
     // }
 
     axios
-      .post('http://localhost:2926/user/login', data)
+      .post('https://ecommerce-project-backend-w01h.onrender.com/user/login', data)
       .then((res) => {
         // console.log(res.data)
         // alert(res.data.msg);

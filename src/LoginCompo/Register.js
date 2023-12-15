@@ -30,7 +30,7 @@ const RegisterCompo = () => {
     // }
 
     axios
-      .post('http://localhost:2926/user/register', data)
+      .post('https://ecommerce-project-backend-w01h.onrender.com/user/register', data)
       .then((res) => {
         // alert(res.data.msg);
         

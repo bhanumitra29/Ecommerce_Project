@@ -11,7 +11,7 @@ const [data, setData] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:2926/api/slider");
+      const response = await fetch("https://ecommerce-project-backend-w01h.onrender.com/api/slider");
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

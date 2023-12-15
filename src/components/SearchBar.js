@@ -26,7 +26,7 @@ console.log(param)
 
       
       <div id="flex-container">
-      {products.filter((item)=>item.name===param || item.cat===param ).map((eachProduct, index) => {
+      {products.filter((item)=>item.name.toLowerCase()===param || item.cat.toLowerCase()===param ).map((eachProduct, index) => {
 
               return (
                 <div className="miniContainer" key={index}>

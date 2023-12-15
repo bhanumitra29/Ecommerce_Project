@@ -50,7 +50,7 @@ const All = () => {
   // console.log("555555555555555555555555555555555555555555555555555555")
   // useEffect(() => {
     if (token) {
-        axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
+        axios.get("https://ecommerce-project-backend-w01h.onrender.com/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
             .then((res) => {
                 console.log("welcome@@@@@@@@@@@@@",res.data);
 

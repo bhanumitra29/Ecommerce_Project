@@ -22,7 +22,7 @@ const initialState = {
 }
 
 export const getDetails = createAsyncThunk("getDetails", async (id) => {
-    const response = await axios.get(`http://localhost:2926/api/all`);
+    const response = await axios.get(`http://localhost:2926/api/find`);
     // console.log(response);
     // console.log(response.data);
     const result = response.data.filter((item)=>item.id===Number(id))
@@ -31,7 +31,7 @@ export const getDetails = createAsyncThunk("getDetails", async (id) => {
 
 
 export const searchItems = createAsyncThunk("searchItems", async (searchQuery) => {
-    const response = await axios.get(`http://localhost:2926/api/all`);
+    const response = await axios.get(`http://localhost:2926/api/find`);
     const result = response.data.filter((item) =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
     );

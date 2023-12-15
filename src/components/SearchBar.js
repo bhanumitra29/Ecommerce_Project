@@ -1,61 +1,61 @@
 // import React, { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { searchItems } from "../redux/features/details/detailsSlice";
-// import { useNavigate } from "react-router-dom";
-// ;
-// const SearchComponent = () => {
-//     const dispatch = useDispatch();
-//     const [searchQuery, setSearchQuery] = useState("");
-//     const searchedItems = useSelector(state => state.detailsReducer.value);
-//     const loading = useSelector(state => state.detailsReducer.loading);
-//    const Navi = useNavigate();
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { add } from "../redux/features/navbar/navbarSlice";
+import { FaCartPlus } from "react-icons/fa";
+import Footer from "../SliderCompo/Footer";
+import '../styles/All.css'
+
+function SearchBar() {
+  const products = useSelector((state) => state.productsReducer.value);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+const param = useParams().search.trim()
+console.log(param)
+  
+  // const [displayedItems, setDisplayedItems] = useState(6); 
+
+  // const loadMore = () => {
     
-    
+  //   setDisplayedItems((prevCount) => prevCount + 6); 
+  // };
 
-//     const handleSearch = () => {
-//         dispatch(searchItems(searchQuery));
-//         setSearchQuery(""); 
-//     };
-
-//     const navigateToSearchedItems = () => {
-//       Navi("/searcheditems", { searchedItems }); 
-//   };
-
-//     return (
-//         <div>
-//             <input
-//                 type="text"
-//                 placeholder="Search..."
-//                 value={searchQuery}
-//                 onChange={(e) => setSearchQuery(e.target.value)}
-//             />
-//             <button onClick={handleSearch}>Search</button>
-//             {loading && <p>Loading...</p>}
-//             {searchedItems ? (
-//                 searchedItems.length === 0 ? (
-//                     <p>No items found</p>
-//                 ) : (
-//                   // <SearchedItem SearchedDetails={searchedItems} />
-//                   // Navi("/sercheditems")
-//                   <button onClick={navigateToSearchedItems}>{searchedItems.name}</button>
-//                 )
-//             ) : (
-//                 <p>No items found</p>
-//             )}
-//         </div>
-//     );
-// };
-
-// export default SearchComponent;
-
-import React from 'react'
-
-const SearchBar = () => {
   return (
-    <div>
-      search
-    </div>
-  )
+    <>
+      {/* <h1>PRODUCTS</h1> */}
+
+      
+      <div id="flex-container">
+      {products.filter((item)=>item.name===param || item.cat===param ).map((eachProduct, index) => {
+
+              return (
+                <div className="miniContainer" key={index}>
+                  <img
+                    onClick={() => navigate(`/details/${eachProduct.id}`)}
+                    src={eachProduct.image}
+                    alt={`${eachProduct.id}`}
+                    width={100}
+                    height={100}
+                  />
+                  <h2>{eachProduct.name}</h2>
+                  <h2>
+                    <span id="dolar-span">₹</span>
+                    {eachProduct.price}
+                  </h2>
+                  <button onClick={() => dispatch(add(eachProduct))}>
+                    <FaCartPlus /> Add to Cart
+                  </button>
+                </div>
+              );
+            })}
+      </div>
+
+     
+      
+
+      <Footer />
+    </>
+  );
 }
 
-export default SearchBar
+export default SearchBar;

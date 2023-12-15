@@ -33,9 +33,13 @@ import Applew from "../SubRoutes/Watches/Applew";
 import Samsungw from "../SubRoutes/Watches/Samsungw";
 import Charger from "../SubRoutes/Accesories/Charger";
 import Cases from "../SubRoutes/Accesories/Cases";
-import SearchedItem from "../components/SearchedItem";
+
 import LoginCompo from "../LoginCompo/Login";
 import RegisterCompo from "../LoginCompo/Register";
+import SearchBar from "../components/SearchBar";
+import Success from "../Stripe/Success";
+import Cancel from "../Stripe/Cancel";
+
 
 // import MobileBrand from "../components/MobileBrand";
 
@@ -100,7 +104,10 @@ function MainRoutes() {
 
         {/* subroutes */}
 
-        <Route path="/sercheditems" element={<SearchedItem />} />
+        <Route path="/SearchBar/:search" element={loading ? <loading/> :<SearchBar/>}/>
+        <Route path="/Success" element={<Success />} />
+        <Route path="/Cancel" element={<Cancel />} />
+
 
 
 

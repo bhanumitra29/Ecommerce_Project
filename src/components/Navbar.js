@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsHandbag } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 // import { TbBrandHexo } from 'react-icons/tb';
 import "../styles/All.css"
 import "../styles/Navbar.css";
-import { FaStore, FaUser } from "react-icons/fa";
-import SearchBar from "./SearchBar";
-import axios from "axios";
+import { FaStore } from "react-icons/fa";
+
+// import axios from "axios";
+import LoginButton from "./LoginButton";
+import SearchedItem from "./SearchedItem";
+
 
 
 function Navbar() {
 
     const [subMenuOpen, setSubMenuOpen] = useState(false);
-    const [subMenuOpen1, setSubMenuOpen1] = useState(false);
+    // const [loginout, setloginout] = useState(true);
+    // const [searchText, setsearchText] = useState(" ");
     const products = useSelector(state => state.navbarReducer.value); 
     const navigate = useNavigate();
+    
 
     const onHover = () => {
       setSubMenuOpen(true);
@@ -25,15 +30,46 @@ function Navbar() {
       setSubMenuOpen(false);
     };
 
-    const onHover1 = () => {
-      setSubMenuOpen1(true);
-    };
+    // const onHover1 = () => {
+    //   setSubMenuOpen1(true);
+    // };
   
-    const onLeave1 = () => {
-      setSubMenuOpen1(false);
-    };
+    // const onLeave1 = () => {
+    //   setSubMenuOpen1(false);
+    // };
 
-    
+//     const seelogout=()=>{
+//       setloginout(true)
+//       localStorage.removeItem("value");
+//       localStorage.removeItem("token");
+      
+     
+//       navigate('/')
+//       window.location.reload(false);
+// }
+
+
+//   const token = localStorage.getItem("token");
+//   console.log(token)
+ 
+//   useEffect(() => {
+//     if (token) {
+//         axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
+//             .then((res) => {
+//                 // console.log("welcome@@@@@@@@@@@@@",res.data);
+//                 setloginout(false)
+               
+//             })
+//             .catch(err => console.log(err))
+//     }
+//     else {
+//       // console.log("-----------------------------------------")
+//         alert("Please login to view cart page!");
+//         navigate("/login");
+//     }
+// },[token,navigate])
+
+
 
     
     function numberOfProducts() {
@@ -57,41 +93,25 @@ function Navbar() {
       window.scroll({ top: 0, behavior: 'smooth' });
         }
 
-// const HandleAthentication=()=>{
-  const token = localStorage.getItem("token");
-  useEffect(() => {
-if (token) {
-    axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
-        .then((res) => {
-            console.log(res.data);
-            navigate("/login")
 
-           
-        })
-        .catch(err => console.log(err))
-    }
-    else {
-    alert("Please login to view cart page!");
-    navigate("/login");
-    }
-  }, [token,navigate])
+        
   
 
 
     // }
 
-    const subMenu1 = (
-      <div className="subroutes1">
-      <ul>
-        <li>
-        <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
-        <NavLink to="/register">SignUp</NavLink>
-        </li>
-      </ul>
-      </div>
-    )
+    // const subMenu1 = (
+    //   <div className="subroutes1">
+    //   <ul>
+    //     <li>
+    //     <NavLink to="/login">Login</NavLink>
+    //     </li>
+    //     <li>
+    //     <NavLink to="/register">SignUp</NavLink>
+    //     </li>
+    //   </ul>
+    //   </div>
+    // )
      
     
 
@@ -160,14 +180,55 @@ if (token) {
 );
 
 
+// const handlesearch=(e)=>{
+  
+//   navigate(`/SearchBar/${searchText}`);
+//   // navigate()`/SearchBar/se")
+//     }
+
+//     const appdata=(e)=>{
+//       e.preventDefault();
+//       setsearchText(e.target.value );
+//       console.log(searchText)
+//  };
+
     return (
-        
-        <div id="navbar-container">
-            {/* <div id="icon"><TbBrandHexo id="icon-in-div" onClick={handleClickIcon} /></div> */}
-            <div className="NavbarLinks">
+     
+      <>
+        {/* <input className="searchbar-1"
+            type="search"
+            placeholder="Search here"
+            value={searchText} onChange={appdata}/>
+            <button onClick={handlesearch}>Search</button> */}
+           
+ <div className="NavbarSearchP">
+
+           
             <div className="logo" onClick={handleClickIcon}>
             <FaStore className="logo-icon" /> <span className="logo-icon logo-text">E-CART</span>
             </div>
+
+
+            <div className="NavbarSearch1">
+
+           <div>
+          <SearchedItem />
+          </div>   
+
+          <LoginButton />
+
+            <BsHandbag id="hand-bag" onClick={HandleClickHandBag} />
+            <div id="number-of-products">{numberOfProducts()}</div>
+            
+            </div>  
+
+            </div>
+
+
+        
+        <div id="navbar-container">
+            {/* <div id="icon"><TbBrandHexo id="icon-in-div" onClick={handleClickIcon} /></div> */}
+            
 
            
             {/* <NavLink to="/" className="link" activeClassName="active-link">
@@ -199,25 +260,38 @@ if (token) {
             </NavLink>
             
             
-        <div className="search">
-        <SearchBar />
-        </div>
+            
+        {/* <input className="searchbar-1"
+            type="search"
+            placeholder="Search here"
+            value={searchText} onChange={appdata}/>
+            <button onClick={handlesearch}>Search</button> */}
+            
 
-            <NavLink
+            {/* <NavLink to="/login">
+             <FaUser /> Login
               
-              className="link"
-              onMouseEnter={onHover1}
-              onMouseLeave={onLeave1}
-            >
-             <FaUser /> My Profile
-              {subMenuOpen1 && subMenu1}
-            </NavLink>
+            </NavLink> */}
+{/* {loginout ? <div>
+                
+                <button><NavLink to="/login">Login</NavLink></button>
+                </div>
+              : 
+              <div>
+                  <button><NavLink  to="/" onClick={seelogout} >Logout</NavLink></button>
+              </div>} */}
+
+              {/* <LoginButton /> */}
+
+
+            
             </div>
             
-            <BsHandbag id="hand-bag" onClick={HandleClickHandBag} />
-            <div id="number-of-products">{numberOfProducts()}</div>
             
-        </div>
+       
+
+
+        </>
     )
 };
 

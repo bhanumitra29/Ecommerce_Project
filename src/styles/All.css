@@ -430,5 +430,36 @@
   text-transform: uppercase; /* Uppercase text */
 }
 
+.searchbutton{
+  padding: 0.2em;
+  border-radius: 0.1em;
+}
   
+
+.loginout{
+  text-decoration: none;
+  color: white;
+  background-color: #FF4252;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.registerbutton{
+  text-decoration: none;
+  color: white;
+  background-color: cornflowerblue;
+  border-radius: 0.2em;
+  padding: 0.2em;
+  
+}
+
+.regdiv{
+  margin-top: 1em;
+  margin-left: -10em;
+}
+
+/* .inputsearch{
+  width: 100%;
+} */
   

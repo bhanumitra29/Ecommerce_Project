@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/All.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+
 
 const RegisterCompo = () => {
   const [data, setData] = useState({
@@ -18,32 +18,38 @@ const RegisterCompo = () => {
       ...data,
       [e.target.name]: e.target.value,
     });
+    console.log(data)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!data.name || !data.phone || !data.email || !data.password) {
-      alert("Please fill in all fields before submitting.");
-      return;
-    }
+    // if (!data.name || !data.phone || !data.email || !data.password) {
+    //   alert("Please fill in all fields before submitting.");
+    //   return;
+    // }
 
     axios
-      .post('http://localhost:2926/api/register', data)
+      .post('http://localhost:2926/user/register', data)
       .then((res) => {
         // alert(res.data.msg);
-        toast.success(res.data.msg)
+        
         
 
         if (res.data.msg === "User Registered successfully") {
           localStorage.setItem('token', res.data.token);
+          console.log("token display",res.data.token)
           navigate('/login');
-          toast.success(res.data.msg)
+          // toast.success(res.data.msg)
+          alert(res.data.msg)
+        }
+        else{
+          alert(res.data.msg)
         }
       })
       .catch((error) => {
         console.log(error);
-        alert("User registration failed, please try again");
+        // alert("User registration failed, please try again");
         // toast.remove("User registration failed, please try again")
       });
 
@@ -66,7 +72,7 @@ const RegisterCompo = () => {
           id="name"
           name="name"
           value={data.name}
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <br />
         <br />
@@ -76,7 +82,7 @@ const RegisterCompo = () => {
           id="num"
           name="phone"
           value={data.phone}
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <br />
         <br />
@@ -86,7 +92,7 @@ const RegisterCompo = () => {
           id="email"
           name="email"
           value={data.email}
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <label htmlFor="password">Password :</label>
         <input
@@ -94,7 +100,7 @@ const RegisterCompo = () => {
           id="password"
           name="password"
           value={data.password}
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <br />
         <br />

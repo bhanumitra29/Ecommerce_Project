@@ -1,49 +1,37 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { add } from "../redux/features/navbar/navbarSlice";
+import React, { useState } from 'react'
+// import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import "../styles/All.css"
+import { FaSearch } from 'react-icons/fa';
+const SearchedItem = () => {
 
-import "../styles/SingleProduct.css";
-// import { useNavigate } from "react-router-dom";
+    const [searchText, setsearchText] = useState(" ");
+    // const products = useSelector(state => state.navbarReducer.value); 
+    const navigate = useNavigate()
+    const handlesearch=(e)=>{
+        
+  
+        navigate(`/SearchBar/${searchText}`);
+        // navigate()`/SearchBar/se")
+          }
+      
+          const appdata=(e)=>{
+            e.preventDefault();
+            setsearchText(e.target.value );
+            console.log(searchText)
+       };
 
 
-function SearchedItem(props) {
+  return (
+    <div>
+      <input className='inputsearch'
+            type="search"
+            placeholder="Search here"
+            value={searchText} onChange={appdata}/>
+            <button className='searchbutton' onClick={handlesearch}><FaSearch /></button>
 
-    // console.log(props.productDetails);
-    // const navigate = useNavigate()
-    const dispatch = useDispatch();
-    
-    
-    return (
+    </div>
+  )
+}
 
-        <div id="single-product-container">
-
-            <div className="flex-item">
-                <img src={props.SearchedDetails[0]?.image} alt="product" width={100} height={100}/>
-            </div>
-
-            <div id="details" className="flex-item">
-                {/* <h2 id="brand">{props.productDetails.name}</h2> */}
-                <h2 id="title">{props.SearchedDetails[0]?.name}</h2>
-                <ul>
-            <li>{props.SearchedDetails[0]?.f1}</li>
-            <li>{props.SearchedDetails[0]?.f2}</li>
-            <li>{props.SearchedDetails[0]?.f3}</li>
-            <li>{props.SearchedDetails[0]?.f4}</li>
-            <li>{props.SearchedDetails[0]?.f5}</li>
-          </ul>
-                <div id="price-container">
-                    <h2 id="price">
-                        <span>₹</span>
-                        {props.SearchedDetails[0]?.price}
-                    </h2>
-                </div>
-
-                <button onClick={() => dispatch(add(props.SearchedDetails))}>Add to cart</button> 
-            </div>
-
-           
-        </div>
-    )
-};
-
-export default SearchedItem;
+export default SearchedItem

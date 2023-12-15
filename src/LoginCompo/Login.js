@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../styles/All.css"
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
 
 
 const LoginCompo = () => {
@@ -16,29 +17,36 @@ const LoginCompo = () => {
       ...data,
       [e.target.name]: e.target.value,
     });
+    console.log(data)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!data.email || !data.password) {
-      alert("Please fill in all fields before submitting.");
-      return;
-    }
+    // if (!data.email || !data.password) {
+    //   alert("Please fill in all fields before submitting.");
+    //   return;
+    // }
 
     axios
-      .post('http://localhost:2926/api/login', data)
+      .post('http://localhost:2926/user/login', data)
       .then((res) => {
-        alert(res.data.msg);
+        // console.log(res.data)
+        // alert(res.data.msg);
+        
 
         if (res.data.msg === "User login successfully") {
           localStorage.setItem('token', res.data.token);
+          alert(res.data.msg)
           navigate("/shoppingCart");
+        }
+        else{
+          alert(res.data.msg)
         }
       })
       .catch((error) => {
         console.log(error);
-        alert("Login failed, please try again");
+        // alert("Login failed, please try again");
       });
 
     // Clear the form data after submission
@@ -58,7 +66,7 @@ const LoginCompo = () => {
           id="email"
           name="email"
           value={data.email}
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <br />
         <br />
@@ -68,12 +76,17 @@ const LoginCompo = () => {
           id="password"
           name="password"
           value={data.password}
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <br />
+       
         <br />
         <button type="submit">Login</button>
       </form>
+    <div className="regdiv">
+    <NavLink className='registerbutton' to="/register">Register?</NavLink>
+    </div>
+      
     </>
   );
 };

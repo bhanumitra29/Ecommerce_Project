@@ -5,6 +5,7 @@ import { add } from "../redux/features/navbar/navbarSlice";
 import { FaCartPlus } from "react-icons/fa";
 import Footer from "../SliderCompo/Footer";
 import '../styles/All.css'
+import axios from "axios";
 
 function Watches() {
   const products = useSelector((state) => state.productsReducer.value);
@@ -18,6 +19,25 @@ function Watches() {
     
     setDisplayedItems((prevCount) => prevCount + 6); 
   };
+
+  function handleAddCart(eachProduct) {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    // useEffect(() => {
+      if (token) {
+          axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
+              .then((res) => {
+                  console.log("welcome@@@@@@@@@@@@@",res.data);
+  
+                  dispatch(add(eachProduct))
+              })
+              .catch(err => console.log(err))
+      }
+      else {
+          alert("Please login to view cart page!");
+          navigate("/login");
+      }
+    }
 
   return (
     <>
@@ -52,7 +72,8 @@ function Watches() {
                     <span id="dolar-span">₹</span>
                     {eachProduct.price}
                   </h2>
-                  <button onClick={() => dispatch(add(eachProduct))}>
+                  {/* <button onClick={() => dispatch(add(eachProduct))}> */}
+                  <button onClick={() => handleAddCart(eachProduct)}>
                     <FaCartPlus /> Add to Cart
                   </button>
                 </div>

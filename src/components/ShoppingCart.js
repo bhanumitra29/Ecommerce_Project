@@ -6,8 +6,9 @@ import { add, remove, removeOne } from "../redux/features/navbar/navbarSlice.js"
 import { useNavigate } from "react-router-dom";
 
 import "../styles/ShoppingCart.css";
-import PayPalPayment from "../PayPal/PayPalPayment.js";
+// import PayPalPayment from "../PayPal/PayPalPayment.js";
 import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
 
 
 
@@ -39,25 +40,48 @@ function ShoppingCart() {
   }
 
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
+  console.log(token)
   useEffect(() => {
-if (token) {
-    axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
-        .then((res) => {
-            console.log(res.data);
-            // navigate("/login")
-
-           
-        })
-        .catch(err => console.log(err))
+    if (token) {
+        axios.get("http://localhost:2926/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch(err => console.log(err))
     }
     else {
-    alert("Please login to view cart page!");
-    navigate("/login");
+        alert("Please login to view cart page!");
+        navigate("/login");
     }
-  }, [token,navigate])
+},[token,navigate])
   
+const MakePayment=async ()=>{
+  // console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+  const stripe=await loadStripe("pk_test_51ONW0JSJoaZaL7s6NJtSPYCZU8os9KWzZLAMIPhKNvUr3IQ4G3jF7xNqbKh3eZKzjzsz2TPrfCL8lN91OuEniuK600rANSqg2k")
+  const body={
+    products:productsInShoppingCart
+  }
+  const headers={
+    "content-Type":"application/json"
+  }
+  const response=await fetch("http://localhost:2926/user/createcheckout",
+  {method:"POST",
+headers:headers,
+body:JSON.stringify(body),
 
+}
+  );
+  const session=await response.json();
+  console.log(session)
+  const result=stripe.redirectToCheckout({
+    sessionId:session.id
+});
+if(result.error){
+  console.log( result.error);
+}
+
+}
 
   return (
     <>
@@ -101,11 +125,13 @@ if (token) {
             <span id="right">{calculateTotalPrice()}</span>
           </div>
 
-         <PayPalPayment />
+<button onClick={MakePayment}>Pay Now</button>
+         {/* <PayPalPayment /> */}
         </>
       )}
     </>
   );
 }
+
 
 export default ShoppingCart;

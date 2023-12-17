@@ -33,11 +33,11 @@ const seelogout=()=>{
     <div>
       {loginout ? <div>
                 
-                <button><NavLink className='loginout' to="/login"><FaSignInAlt />Login</NavLink></button>
+                <button className='loginbutton'><NavLink className='loginout' to="/login"><FaSignInAlt />Login</NavLink></button>
                 </div>
               : 
               <div>
-                  <button><NavLink className='loginout' to="/" onClick={seelogout} ><FaSignOutAlt/>Logout</NavLink></button>
+                  <button className='loginbutton'><NavLink className='loginout' to="/" onClick={seelogout} ><FaSignOutAlt/>Logout</NavLink></button>
               </div>}
     </div>
   )

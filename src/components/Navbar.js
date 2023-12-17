@@ -10,6 +10,7 @@ import { FaStore } from "react-icons/fa";
 // import axios from "axios";
 import LoginButton from "./LoginButton";
 import SearchedItem from "./SearchedItem";
+import MobileDropdownMenu from "./MobileDropdownMenu";
 
 
 
@@ -195,6 +196,22 @@ function Navbar() {
     return (
      
       <>
+
+      <div className="dropdownContainer">
+
+      <div className="logo" onClick={handleClickIcon}>
+            <FaStore className="logo-icon" /> <span className="logo-icon logo-text">E-CART</span>
+            </div>
+
+            <div className="bagContainer">
+            <BsHandbag id="hand-bag" onClick={HandleClickHandBag} />
+            <div id="number-of-products">{numberOfProducts()}</div>
+            </div>
+
+     
+
+      </div>
+      <MobileDropdownMenu />
         {/* <input className="searchbar-1"
             type="search"
             placeholder="Search here"
@@ -217,9 +234,12 @@ function Navbar() {
 
           <LoginButton />
 
+            <div className="bagContainer">
             <BsHandbag id="hand-bag" onClick={HandleClickHandBag} />
             <div id="number-of-products">{numberOfProducts()}</div>
-            
+            </div>
+
+
             </div>  
 
             </div>

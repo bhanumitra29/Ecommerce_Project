@@ -4,7 +4,7 @@ import { add } from "../redux/features/navbar/navbarSlice";
 
 import "../styles/SingleProduct.css";
 // import { useNavigate } from "react-router-dom";
-
+import "../styles/All.css"
 
 function SingleProduct(props) {
 

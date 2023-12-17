@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../redux/features/details/detailsSlice";
 
 import SingleProduct from "./SingleProduct";
-
+import "../styles/All.css"
 
 function Details() {
 

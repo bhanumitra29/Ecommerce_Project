@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../styles/Loading.css";
-
+import "../styles/All.css"
 function Loading() {
     return (
         <div id="loading-container">

@@ -58,27 +58,31 @@
     cursor: pointer;
 } */
 
-.NavbarSearch1>#hand-bag {
+.bagContainer>#hand-bag {
     position: absolute;
     top: 0.5rem;
-    right: 2.6rem;
+    right: 1.5rem;
     color: white;
     font-size: 2rem;
 }
 
-.NavbarSearch1>#hand-bag:hover {
+.bagContainer>#hand-bag:hover {
     cursor: pointer;
     color: #9d174d;
 }
 
-.NavbarSearch1>#number-of-products {
+.bagContainer>#number-of-products {
    
 
     position: absolute;
     top: 2rem;
-    right: 1.6rem;
+    right: 0.8rem;
     color: white;
     font-size: 1.2rem;
+}
+
+.logincompo{
+  margin-right: 2rem;
 }
 
 .subroutes {
@@ -163,4 +167,77 @@
     #navbar-container>#number-of-products {
         right: 1.4rem;
     }
+}
+
+/* @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .NavbarSearch1>#hand-bag {
+    position: absolute;
+    top: 0.5rem;
+    right: 2.6rem;
+    color: white;
+    font-size: 2rem;
+}
+
+.NavbarSearch1>#hand-bag:hover {
+    cursor: pointer;
+    color: #9d174d;
+}
+
+.NavbarSearch1>#number-of-products {
+   
+
+    position: absolute;
+    top: 2rem;
+    right: 1.6rem;
+    color: white;
+    font-size: 1.2rem;
+}
+
+} */
+
+@media (max-width: 768px) {
+
+  .NavbarSearchP{
+    display: none;
+  }
+
+  #navbar-container{
+    display: none;
+  }
+
+  .mainMobiledrop{
+    display: block;
+    /* margin-bottom: 5rem; */
+  }
+
+  .dropdownContainer{
+    height: 5rem;
+    display: flex;
+    background-color: #333;
+  }
+
+  .bagContainer>#hand-bag {
+    position: absolute;
+    top: 1rem;
+    right: 6rem;
+    color: white;
+    font-size: 2rem;
+}
+
+.bagContainer>#hand-bag:hover {
+    cursor: pointer;
+    color: #9d174d;
+}
+
+.bagContainer>#number-of-products {
+   
+
+    position: absolute;
+    top: 2.5rem;
+    right: 5rem;
+    color: white;
+    font-size: 1.2rem;
+}
+
 }

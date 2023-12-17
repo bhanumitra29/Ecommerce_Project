@@ -7,7 +7,7 @@ import { FaShippingFast, FaHandHoldingUsd, FaUserTie, FaCartPlus } from 'react-i
 import "../styles/Products.css";
 import SliderComponent from "../SliderCompo/Slider";
 import Footer from "../SliderCompo/Footer";
-
+import "../styles/All.css"
 function shuffle(array) {
   let currentIndex = array.length, randomIndex;
 

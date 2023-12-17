@@ -9,7 +9,7 @@ import "../styles/ShoppingCart.css";
 // import PayPalPayment from "../PayPal/PayPalPayment.js";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
-
+import "../styles/All.css"
 
 
 function ShoppingCart() {

@@ -5,7 +5,7 @@ import { add } from "../redux/features/navbar/navbarSlice";
 import { FaCartPlus } from "react-icons/fa";
 import Footer from "../SliderCompo/Footer";
 import axios from "axios";
-
+import "../styles/All.css"
 function Accesories() {
   const products = useSelector((state) => state.productsReducer.value);
   const navigate = useNavigate();

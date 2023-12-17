@@ -99,16 +99,16 @@ button:hover {
         padding: 0.3rem;
     }
 }
-
-@media (max-width: 860px) {
+/* 860px */
+@media (max-width: 768px) {
 
     #single-product-container {
         flex-direction: column;
         align-items: center;
-        text-align: center;
+        text-align: start;
 
         width: 90%;
-        margin-left: 5%;
+        margin-left: 1%;
         padding: 1rem;
     }
 

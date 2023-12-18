@@ -55,33 +55,37 @@ function ShoppingCart() {
         navigate("/login");
     }
 },[token,navigate])
-  
-const MakePayment=async ()=>{
-  // console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-  const stripe=await loadStripe("pk_test_51ONW0JSJoaZaL7s6NJtSPYCZU8os9KWzZLAMIPhKNvUr3IQ4G3jF7xNqbKh3eZKzjzsz2TPrfCL8lN91OuEniuK600rANSqg2k")
-  const body={
-    products:productsInShoppingCart
-  }
-  const headers={
-    "content-Type":"application/json"
-  }
-  const response=await fetch("https://ecommerce-project-backend-w01h.onrender.com/user/createcheckout",
-  {method:"POST",
-headers:headers,
+// console.log(productsInShoppingCart)
+const MakePayment=(async ()=>{
+  // const makePayment=async ()=>{
+    console.log(productsInShoppingCart)
+    const stripe=await loadStripe(" pk_test_51OMERySJb30zHYKXhazWu96YHeq9esM7jjoHRU5Yl6OsFBFrIqAN4l6DR432lstZ8S1BEgMXk05yGcoIoqcZQ0FJ00fJW2eWVM")
+    const body={
+      products:productsInShoppingCart
+    }
+    const headers={
+      "content-Type":"application/json"
+    }
+    const response=await fetch("https://ecommerce-project-backend-w01h.onrender.com/user/createcheckout1",
+    // const response=await fetch("http://localhost:2926/user/createcheckout1",
+    {method:"POST",
+  headers:headers,
 body:JSON.stringify(body),
 
 }
-  );
-  const session=await response.json();
-  console.log(session)
-  const result=stripe.redirectToCheckout({
-    sessionId:session.id
-});
-if(result.error){
-  console.log( result.error);
+    );
+    const session=await response.json();
+    console.log(session)
+    const result=stripe.redirectToCheckout({
+      sessionId:session.id
+    });  
+    localStorage.removeItem("value")
+    // navigate("/Success")
+    
+    if(result.error){
+      console.log( result.error);
 }
-
-}
+})
 
   return (
     <>

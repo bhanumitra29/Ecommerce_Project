@@ -105,6 +105,7 @@ function MainRoutes() {
         {/* subroutes */}
 
         <Route path="/SearchBar/:search" element={loading ? <loading/> :<SearchBar/>}/>
+        
         <Route path="/Success" element={<Success />} />
         <Route path="/Cancel" element={<Cancel />} />
 

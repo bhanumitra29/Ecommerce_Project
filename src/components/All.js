@@ -52,7 +52,7 @@ const All = () => {
     if (token) {
         axios.get("https://ecommerce-project-backend-w01h.onrender.com/user/auth", { headers: { "authorization": `Bearer ${token}` } }) 
             .then((res) => {
-                console.log("welcome@@@@@@@@@@@@@",res.data);
+                console.log(res.data);
 
                 dispatch(add(eachProduct))
             })

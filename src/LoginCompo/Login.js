@@ -57,9 +57,10 @@ const LoginCompo = () => {
   };
 
   return (
-    <>
-      <h1>LOGIN HERE</h1>
+    <div className="reglogback">
+      
       <form onSubmit={handleSubmit}>
+      <h1 className="formheading">LOGIN HERE</h1>
         <label htmlFor="email">Email :</label>
         <input
           type="email"
@@ -82,12 +83,15 @@ const LoginCompo = () => {
        
         <br />
         <button type="submit">Login</button>
-      </form>
-    <div className="regdiv">
-    <NavLink className='registerbutton' to="/register">Register?</NavLink>
+
+
+        <div className="regdiv">
+    <NavLink className='registerbutton' to="/register">Not Registered? Register Here</NavLink>
     </div>
+      </form>
+    
       
-    </>
+    </div>
   );
 };
 

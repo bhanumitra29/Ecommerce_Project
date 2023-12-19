@@ -463,18 +463,106 @@
   background-color: cornflowerblue;
   border-radius: 0.2em;
   padding: 0.2em;
+  margin: auto;
   
+}
+
+.registerbutton:hover {
+  text-decoration: underline;
 }
 
 .regdiv{
   margin-top: 1em;
-  margin-left: -10em;
+  /* margin-left: -10em; */
 }
 
 /* .inputsearch{
   width: 100%;
 } */
   
+button.paynow {
+  width: 25%;
+  margin: auto;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Your desired background color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.paynow:hover {
+  background-color: #0056b3; /* Color change on hover */
+}
+
+
+
+/* Form container */
+form {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  color: antiquewhite;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  /* background-color: #f9f9f9; */
+  background-image: url("https://t4.ftcdn.net/jpg/02/16/47/33/360_F_216473351_FCLq1pZQOBFrgcyPBphKvBd8Z5wjD1dI.jpg");
+  overflow: hidden;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+/* Form labels */
+label {
+  font-weight: bold;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.reglogback{
+  background-image: url("https://t4.ftcdn.net/jpg/02/16/47/33/360_F_216473351_FCLq1pZQOBFrgcyPBphKvBd8Z5wjD1dI.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 84.5vh;
+  width: 100vw;
+  
+}
+
+.formheading{
+  color: white;
+  /* margin-top: 1rem; */
+}
+
 
 @media only screen and (max-width: 650px) and (min-width: 200px) {
 

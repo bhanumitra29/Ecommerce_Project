@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ZeroProduct from "./ZeroProduct.js";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaCreditCard, FaTrashAlt } from "react-icons/fa";
 import { add, remove, removeOne } from "../redux/features/navbar/navbarSlice.js";
 import { useNavigate } from "react-router-dom";
 
@@ -59,7 +59,7 @@ function ShoppingCart() {
 const MakePayment=(async ()=>{
   // const makePayment=async ()=>{
     console.log(productsInShoppingCart)
-    const stripe=await loadStripe(" pk_test_51OMERySJb30zHYKXhazWu96YHeq9esM7jjoHRU5Yl6OsFBFrIqAN4l6DR432lstZ8S1BEgMXk05yGcoIoqcZQ0FJ00fJW2eWVM")
+    const stripe=await loadStripe("pk_test_51OMERySJb30zHYKXhazWu96YHeq9esM7jjoHRU5Yl6OsFBFrIqAN4l6DR432lstZ8S1BEgMXk05yGcoIoqcZQ0FJ00fJW2eWVM")
     const body={
       products:productsInShoppingCart
     }
@@ -129,7 +129,7 @@ body:JSON.stringify(body),
             <span id="right">{calculateTotalPrice()}</span>
           </div>
 
-<button onClick={MakePayment}>Pay Now</button>
+<button className="paynow" onClick={MakePayment}><FaCreditCard /> Pay Now</button>
          {/* <PayPalPayment /> */}
         </>
       )}

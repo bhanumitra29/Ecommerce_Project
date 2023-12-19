@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/All.css"
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 const RegisterCompo = () => {
@@ -63,9 +63,10 @@ const RegisterCompo = () => {
   };
 
   return (
-    <>
-      <h1>REGISTER FORM</h1>
+    <div className="reglogback">
+      
       <form onSubmit={handleSubmit}>
+      <h1 className="formheading">REGISTER FORM</h1>
         <label htmlFor="name">Name :</label>
         <input
           type="text"
@@ -105,8 +106,14 @@ const RegisterCompo = () => {
         <br />
         <br />
         <button type="submit">Register</button>
+      
+        <div className="regdiv">
+    <NavLink className='registerbutton' to="/login">Already have Account? Login Here</NavLink>
+    </div>
+      
+      
       </form>
-    </>
+    </div>
   );
 };
 
